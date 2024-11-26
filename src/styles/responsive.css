@@ -1,0 +1,320 @@
+@media screen and (max-width: 768px) {
+    :root {
+      --sectionPadding: 4rem 0;
+    }
+
+    .skip-to-content {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        z-index: 100;
+        text-align: center;
+        width: 100%;
+        transition: top 0.3s ease;
+      }
+      
+      
+      .skip-to-content:focus {
+        top: 0;
+      }
+  
+    #header-info {
+      display: none;
+    }
+  
+    #hero h1 {
+      font-size: 2rem;
+    }
+  
+    #hero h4 {
+      font-size: 0.9rem;
+    }
+
+    .cta-button:hover {
+        background: var(--counterBackgroundColor);
+        color: #000;
+        border-color: #fff;
+      }
+      
+}
+
+@media screen and (min-width: 650px) {
+    .app-bar {
+      grid-template-columns: 1fr auto;
+      padding: 8px 32px;
+    }
+   
+    .app-bar .app-bar__brand h1 {
+      font-size: 1.5em;
+    }
+   
+    .app-bar .app-bar__menu {
+      display: none;
+    }
+   
+    .app-bar .app-bar__navigation {
+      position: static;
+      width: 100%;
+    }
+   
+    .app-bar .app-bar__navigation ul li {
+      display: inline-block;
+    }
+   
+    .app-bar .app-bar__navigation ul li a {
+      display: inline-block;
+      width: 120px;
+      text-align: center;
+      margin: 0;
+    }
+   
+  }
+   
+  @media screen and (min-width: 800px) {
+    .app-bar .app-bar__brand h1 {
+      font-size: 2em;
+    }
+  }
+
+.item__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .item__content {
+    margin-top: 20px;
+  }
+  
+  @media (max-width: 600px) {
+    .item__header {
+      width: 100%;
+    }
+  
+    .item__content {
+      padding: 10px;
+    }
+  
+    .item__poster {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .item {
+      width: 100%;
+    }
+    .skip-to-content {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      z-index: 100;
+      text-align: center;
+      width: 100%;
+      transition: top 0.3s ease;
+    }
+    
+    
+    .skip-to-content:focus {
+      top: 0;
+    }
+  }
+
+
+  /* Mobile dan Tablet (Lebih Kecil dari Desktop) */
+
+/* Tampilan Umum untuk Mobile dan Tablet */
+@media screen and (max-width: 768px) {
+    /* Card utama */
+    .item-detail {
+      padding: 15px;
+      margin: 0 10px; /* Memberikan margin yang lebih kecil pada sisi-sisi card */
+    }
+  
+    /* Header (Gambar dan Judul) */
+    .item__header {
+      flex-direction: column; /* Menyusun gambar dan judul secara vertikal */
+      align-items: center;
+      gap: 10px; /* Mengurangi jarak antara gambar dan judul */
+    }
+  
+    .item__header img {
+      width: 100%; /* Gambar akan menyesuaikan 100% lebar layar */
+      max-width: 300px; /* Mengatur ukuran gambar maksimal agar tidak terlalu besar */
+      height: auto; /* Menjaga aspek rasio gambar */
+    }
+  
+    .item__title {
+      font-size: 1.8rem; /* Ukuran font lebih kecil untuk mobile */
+      text-align: center; /* Menyelaraskan judul di tengah */
+      max-width: 100%; /* Memastikan judul tidak terpotong */
+    }
+  
+    /* Informasi Item */
+    .item__info {
+      margin-top: 20px;
+      padding: 15px;
+    }
+  
+    .item__info h3 {
+      font-size: 1.5rem; /* Ukuran font yang lebih kecil */
+    }
+  
+    .item__info__section h4 {
+      font-size: 1.1rem;
+    }
+  
+    .item__info__section p {
+      font-size: 0.9rem;
+    }
+  
+    /* Deskripsi Item */
+    .item__overview {
+      margin-top: 20px;
+    }
+  
+    .item__overview h3 {
+      font-size: 1.5rem; /* Ukuran font lebih kecil */
+    }
+  
+    .item__overview p {
+      font-size: 0.9rem;
+    }
+  
+    /* Review */
+    .item__reviews {
+      margin-top: 20px;
+    }
+  
+    .review__card {
+      padding: 12px;
+    }
+  
+    .review__header {
+      flex-direction: column; /* Menyusun nama dan tanggal review secara vertikal */
+      align-items: center;
+    }
+  
+    .review__name {
+      font-size: 1.1rem; /* Ukuran font lebih kecil untuk nama */
+    }
+  
+    .review__date {
+      font-size: 0.85rem;
+    }
+  
+    .review__content p {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Tablet (Lebih besar dari Mobile) */
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+
+    .skip-to-content {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      z-index: 100;
+      text-align: center;
+      width: 100%;
+      transition: top 0.3s ease;
+    }
+    
+    
+    .skip-to-content:focus {
+      top: 0;
+    }
+
+    /* Card utama */
+    .item-detail {
+      padding: 20px;
+      margin: 0 20px;
+    }
+  
+    /* Header (Gambar dan Judul) */
+    .item__header {
+      flex-direction: row; /* Menyusun gambar dan judul secara horizontal */
+      justify-content: space-between;
+    }
+  
+    .item__header img {
+      width: 45%; /* Gambar akan mengambil 45% dari lebar container */
+    }
+  
+    .item__title {
+      font-size: 2.2rem; /* Ukuran font yang sedikit lebih besar untuk tablet */
+      text-align: left;
+    }
+  
+    /* Informasi Item */
+    .item__info {
+      margin-top: 30px;
+      padding: 20px;
+    }
+  
+    .item__info h3 {
+      font-size: 1.7rem; /* Ukuran font yang pas untuk tablet */
+    }
+  
+    .item__info__section h4 {
+      font-size: 1.2rem;
+    }
+  
+    .item__info__section p {
+      font-size: 1rem;
+    }
+  
+    /* Deskripsi Item */
+    .item__overview {
+      margin-top: 30px;
+    }
+  
+    .item__overview h3 {
+      font-size: 1.7rem;
+    }
+  
+    .item__overview p {
+      font-size: 1rem;
+    }
+  
+    /* Review */
+    .item__reviews {
+      margin-top: 30px;
+    }
+  
+    .review__card {
+      padding: 15px;
+    }
+  
+    .review__header {
+      flex-direction: row; /* Menyusun nama dan tanggal review secara horizontal */
+      justify-content: space-between;
+    }
+  
+    .review__name {
+      font-size: 1.2rem;
+    }
+  
+    .review__date {
+      font-size: 1rem;
+    }
+  
+    .review__content p {
+      font-size: 1rem;
+    }
+  }
+
+  
+  
+  

@@ -1,0 +1,546 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+ 
+:root {
+  /* colors */
+  --counterBackgroundColor: #fff;
+
+  --primaryTextColor: #fff;
+
+  --secondaryTextColor: #aaa;
+
+  --primaryBackgroundColor: #0a0b0a;
+
+  --secondaryBackgroundColor: #1a191a;
+
+  --thirdBackgroundColor: #2a292b;
+
+  /* Sizing */
+  --sectionPadding: 6rem 0;
+} 
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ 
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: url('../public/images/heros/hero-image_3.jpg') no-repeat center center/cover;
+}
+
+
+.hero {
+  text-align: center;
+  color: #fff; /* Text color for hero section */
+}
+
+.hero h4 {
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero h1 {
+  font-size: 3.3rem;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  font-weight: 500;
+}
+
+.hero-cta {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.cta-button {
+  cursor: pointer;
+  border: 2px solid var(--counterBackgroundColor);
+  padding: 0.75rem 2rem;
+  background: transparent;
+  color: var(--primaryTextColor); 
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
+.cta-button:hover {
+  background: var(--counterBackgroundColor); 
+  color: #000;
+}
+
+.header-shadow {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(rgba(0,0,0,0), var(--primaryBackgroundColor));
+}
+ 
+ 
+/*
+  AppBar
+*/
+
+#hamburgerButton {
+  background: none;
+  border: none;
+  color: white; 
+  font-size: 30px;
+  cursor: pointer;
+}
+
+
+#hamburgerButton:hover {
+  color: #f0f0f0; 
+}
+ 
+.app-bar {
+  padding: 8px 16px;
+  background-color: var(--secondaryBackgroundColor);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  box-shadow: 0 2px 4px 0 rgba(221, 217, 217, 0.2);
+
+}
+ 
+.app-bar .app-bar__menu {
+  display: flex;
+  align-items: center;
+}
+ 
+.app-bar .app-bar__menu button {
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  padding: 8px;
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+}
+ 
+.app-bar .app-bar__brand {
+  display: flex;
+  align-items: center;
+}
+ 
+.app-bar .app-bar__brand h1 {
+  color: #db0000;
+  text-transform: uppercase;
+  font-size: 22px;
+  user-select: none;
+}
+ 
+.app-bar .app-bar__navigation {
+  position: absolute;
+  top: 50px;
+  left: -180px;
+  width: 150px;
+  transition: all 0.3s;
+  padding: 8px;
+  background-color: var(--secondaryBackgroundColor);
+  overflow: hidden;
+}
+ 
+.app-bar .app-bar__navigation.open {
+  left: 0;
+}
+ 
+.app-bar .app-bar__navigation ul li a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--counterBackgroundColor);
+  padding: 8px;
+  margin-bottom: 5px;
+  width: 100%;
+  min-height: 44px;
+  min-width: 44px;
+}
+ 
+/*
+  Main Content
+*/
+ 
+main {
+  padding: 0;
+  flex: 1;
+  background-color: var(--secondaryBackgroundColor);
+  color: #fff;
+
+}
+
+
+.content {
+  margin: 0 auto;
+  min-height: 100%;
+}
+ 
+.content .content__heading {
+  font-weight: normal;
+  margin-bottom: 32px;
+}
+ 
+ 
+ 
+/* Styling untuk item */
+
+
+.restaurants {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly; 
+  gap: 20px; 
+  padding: 10px;
+}
+
+.item {
+  background-color: var(--secondaryBackgroundColor);
+  flex: 1 1 calc(33.333% - 20px);
+  box-sizing: border-box; 
+  max-width: calc(33.333% - 20px);
+  min-width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); 
+  overflow: hidden;
+  width: calc(33% - 1.5rem);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: var(--primaryTextColor); 
+}
+
+.item-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Mengatur jarak antar item */
+  gap: 20px; /* Jarak antar elemen */
+}
+
+.item__header {
+  position: relative;
+}
+
+.item__header__poster {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid var(--thirdBackgroundColor);
+}
+
+.item__header__rating {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--counterBackgroundColor);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  z-index: 1;
+}
+
+.item__header__city {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 8px;
+  color: var(--secondaryTextColor);
+  text-transform: capitalize; 
+  text-align: center; 
+  
+}
+
+.item__header__city p {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.item__content {
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.item__content a {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-block;
+  padding: 0.5rem; 
+  box-sizing: border-box;
+}
+
+.item__content h3 a {
+  font-size: 1.4rem;
+  color: var(--counterBackgroundColor);
+  text-decoration: none;
+  font-family: "Jost", sans-serif;
+  font-weight: 500;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.item__content h3 a:hover {
+  text-decoration: underline;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+ 
+/* Detail */
+.restaurants-detail{
+  padding: 16px;
+}
+
+.item-detail {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Arial', sans-serif;
+  background-color: var(--secondaryBackgroundColor);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  
+}
+
+/* Menyesuaikan tombol Skip to Content */
+.skip-to-content {
+  position: absolute;
+  top: -40px; /* Menyembunyikan tombol di luar layar pada awalnya */
+  left: 0;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  z-index: 100;
+  text-align: center;
+  width: 100%;
+  transition: top 0.3s ease; /* Transisi yang halus */
+}
+
+.skip-to-content:focus {
+  top: 0; /* Menampilkan tombol saat difokuskan */
+}
+
+/* Mobile dan Tablet (Lebih Kecil dari Desktop) */
+@media screen and (max-width: 768px) {
+  .skip-to-content {
+    position: absolute;
+    top: -40px; /* Menyembunyikan tombol pada awalnya */
+    left: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    z-index: 100;
+    text-align: center;
+    width: 100%;
+    transition: top 0.3s ease; /* Transisi tombol */
+  }
+  
+  .skip-to-content:focus {
+    top: 0; /* Menurunkan tombol ke bawah saat difokuskan */
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    z-index: 100;
+    text-align: center;
+    width: 100%;
+    transition: top 0.3s ease;
+  }
+  
+  .skip-to-content:focus {
+    top: 0; /* Menurunkan tombol ke bawah saat difokuskan */
+  }
+}
+
+
+
+/* like */
+.like {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #db0000;
+  
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  border-radius: 50%;
+  border: 0;
+  
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+}
+/* end Like */
+
+/* Header dan gambar item */
+.item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.item__header img {
+  max-width: 100%; /* Gambar item tidak terlalu besar */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(83, 77, 77, 0.548); 
+}
+
+.item__title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--secondaryTextColor);
+  margin-bottom: 32px;
+  max-width: 50%;
+}
+
+/* Card utama info item */
+.item__info {
+  background-color:var(--secondaryBackgroundColor); /* Latar belakang berbeda dari card utama */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.item__info h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: var(--primaryTextColor);
+}
+
+.item__info__section {
+  margin-bottom: 15px;
+}
+
+.item__info__section h4 {
+  font-size: 1.2rem;
+  color: var(--counterBackgroundColor);
+}
+
+.item__info__section p {
+  font-size: 1rem;
+  color: var(--secondaryTextColor);
+}
+
+/* Overview dari item */
+.item__overview {
+  margin-bottom: 40px;
+}
+
+.item__overview h3 {
+  font-size: 1.8rem;
+  color: var(--counterBackgroundColor);
+}
+
+.item__overview p {
+  font-size: 1rem;
+  color: var(--secondaryTextColor);
+}
+
+
+.item__reviews {
+  margin-top: 40px; 
+}
+
+.item__reviews h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: var(--counterBackgroundColor);
+}
+
+.reviews__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.review__card {
+  background-color: var(--primaryBackgroundColor);
+  padding: 15px;
+  margin-bottom: 20px;
+  border: var(--counterBackgroundColor);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 100%; 
+}
+
+.review__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.review__name {
+  font-weight: bold;
+  color: var(--primaryTextColor);
+}
+
+.review__date {
+  font-size: 0.9rem;
+  color: var(--primaryTextColor);
+}
+
+.review__content {
+  font-size: 1rem;
+  color: var(--secondaryTextColor);
+  word-wrap: break-word; 
+  white-space: normal; 
+  line-height: 1.6;
+}
+
+.review__content p {
+  margin: 0; 
+  word-break: break-word; 
+}
+
+/* End Detail */
+
+
+ 
+/*
+  Footer
+*/
+ 
+footer {
+  padding: 16px;
+  background-color: var(--secondaryBackgroundColor);
+}
+ 
+footer p {
+  text-align: center;
+  color: var(--secondaryTextColor);
+}
+ 

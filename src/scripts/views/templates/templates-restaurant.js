@@ -111,7 +111,7 @@ const createLikeButtonTemplate = () => `
   </button>
 `;
 
-const createLikedButtonTemplate = () => `
+const createUnlikeButtonTemplate = () => `
   <button aria-label="unlike this restaurant" id="likeButton" class="like">
     <i class="fa fa-heart" aria-hidden="true"></i>
   </button>
@@ -119,4 +119,4 @@ const createLikedButtonTemplate = () => `
 
 
 
-export { createDetailTemplate, createItemTemplate, createLikeButtonTemplate, createLikedButtonTemplate, createHeroSection };
+export { createDetailTemplate, createItemTemplate, createLikeButtonTemplate, createUnlikeButtonTemplate, createHeroSection };

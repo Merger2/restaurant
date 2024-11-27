@@ -2,16 +2,18 @@
 import LikeButtonInitiator from '../src/scripts/utils/like-button-initiator';
 import FavoriteRestaurantIdb from '../src/scripts/data/favorite-restaurant-db';
 
-describe('Liking and Unliking A Restaurant', () => {
-  beforeEach(async () => {
+describe('Liking A Restaurant', () => {
+  const addLikeButtonContainer = () => {
     document.body.innerHTML = '<div id="likeButtonContainer"></div>';
+  };
+
+  beforeEach(() => {
+    addLikeButtonContainer();
   });
 
-  afterEach(async () => {
-    await FavoriteRestaurantIdb.deleteRestaurant(1);
-  });
+  it('should show the like button when the movie has not been liked before', async () => {
+    document.body.innerHTML = '<div id="likeButtonContainer"></div>';
 
-  it('should show the like button when the restaurant has not been liked before', async () => {
     await LikeButtonInitiator.init({
       likeButtonContainer: document.querySelector('#likeButtonContainer'),
       restaurant: {
@@ -19,8 +21,7 @@ describe('Liking and Unliking A Restaurant', () => {
       },
     });
 
-    const likeButton = document.querySelector('[aria-label="like this restaurant"]');
-    expect(likeButton).toBeTruthy();
+    expect(document.querySelector('[aria-label="like this restaurant"]')).toBeTruthy();
   });
 
   it('should not show the unlike button when the restaurant has not been liked before', async () => {
@@ -31,28 +32,25 @@ describe('Liking and Unliking A Restaurant', () => {
       },
     });
 
-    const unlikeButton = document.querySelector('[aria-label="unlike this restaurant"]');
-    expect(unlikeButton).toBeFalsy();
+    expect(document.querySelector('[aria-label="unlike this restaurant"]')).toBeFalsy();
   });
 
   it('should be able to like the restaurant', async () => {
+    document.body.innerHTML = '<div id="likeButtonContainer"></div>';
     await LikeButtonInitiator.init({
       likeButtonContainer: document.querySelector('#likeButtonContainer'),
       restaurant: {
         id: 1,
-        name: 'Restaurant A',
       },
     });
-
-    document.querySelector('[aria-label="like this restaurant"]').dispatchEvent(new Event('click'));
-
+    document.querySelector('#likeButton').dispatchEvent(new Event('click'));
     const restaurant = await FavoriteRestaurantIdb.getRestaurant(1);
-    expect(restaurant).toEqual({ id: 1, name: 'Restaurant A' });
+    expect(restaurant).toEqual({ id: 1 });
+
+    await FavoriteRestaurantIdb.deleteRestaurant(1);
   });
 
-  it('should be able to unlike the restaurant', async () => {
-    await FavoriteRestaurantIdb.putRestaurant({ id: 1, name: 'Restaurant A' });
-
+  it('should not add a restaurant again when its already liked', async () => {
     await LikeButtonInitiator.init({
       likeButtonContainer: document.querySelector('#likeButtonContainer'),
       restaurant: {
@@ -60,24 +58,21 @@ describe('Liking and Unliking A Restaurant', () => {
       },
     });
 
-    document.querySelector('[aria-label="unlike this restaurant"]').dispatchEvent(new Event('click'));
+    await FavoriteRestaurantIdb.putRestaurant({ id: 1 });
 
-    const restaurant = await FavoriteRestaurantIdb.getRestaurant(1);
-    expect(restaurant).toBeFalsy();
+    document.querySelector('#likeButton').dispatchEvent(new Event('click'));
+
+    expect(await FavoriteRestaurantIdb.getAllRestaurant()).toEqual([{ id: 1 }]);
+    await FavoriteRestaurantIdb.deleteRestaurant(1);
   });
 
   xit('should not add a restaurant when it has no id', async () => {
     await LikeButtonInitiator.init({
       likeButtonContainer: document.querySelector('#likeButtonContainer'),
-      restaurant: {
-        name: 'Restaurant A',
-      },
+      movie: {},
     });
-
-    document.querySelector('[aria-label="like this restaurant"]').dispatchEvent(new Event('click'));
-
-    const restaurant = await FavoriteRestaurantIdb.getAllRestaurant();
-    expect(restaurant).toEqual([]); // Pastikan database kosong
+    document.querySelector('#likeButton').dispatchEvent(new Event('click'));
+    expect(await FavoriteMovieIdb.getAllMovies()).toEqual([]);
   });
 
 });

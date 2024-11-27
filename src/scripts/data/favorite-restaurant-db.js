@@ -25,23 +25,38 @@ checkDB();  // Pastikan DB bisa diakses dan object store berfungsi
 
 const FavoriteRestaurantIdb = {
   async getRestaurant(id) {
+    if (!id) {
+      console.error('Restaurant ID is required');
+      return null; // Mengembalikan null jika id tidak ada
+    }
     const db = await dbPromise;
     console.log('Getting restaurant with ID:', id);
     return db.get(OBJECT_STORE_NAME, id); // Ambil berdasarkan ID
   },
+
   async getAllRestaurant() {
     const db = await dbPromise;
-    return db.getAll(OBJECT_STORE_NAME); // Ambil semua restoran
+    return db.getAll(OBJECT_STORE_NAME);
   },
+
   async putRestaurant(restaurant) {
+    if (!restaurant || !restaurant.id) {
+      console.error('Invalid restaurant data: Missing ID');
+      return;
+    }
     const db = await dbPromise;
     console.log('Adding restaurant:', restaurant);
-    return db.put(OBJECT_STORE_NAME, restaurant); // Menambah atau memperbarui restoran
+    return db.put(OBJECT_STORE_NAME, restaurant);
   },
+
   async deleteRestaurant(id) {
+    if (!id) {
+      console.error('Restaurant ID is required to delete');
+      return;
+    }
     const db = await dbPromise;
     console.log('Deleting restaurant with ID:', id);
-    return db.delete(OBJECT_STORE_NAME, id); // Menghapus restoran berdasarkan ID
+    return db.delete(OBJECT_STORE_NAME, id);
   },
 };
 

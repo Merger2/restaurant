@@ -65,4 +65,19 @@ describe('Liking and Unliking A Restaurant', () => {
     const restaurant = await FavoriteRestaurantIdb.getRestaurant(1);
     expect(restaurant).toBeFalsy();
   });
+
+  xit('should not add a restaurant when it has no id', async () => {
+    await LikeButtonInitiator.init({
+      likeButtonContainer: document.querySelector('#likeButtonContainer'),
+      restaurant: {
+        name: 'Restaurant A',
+      },
+    });
+
+    document.querySelector('[aria-label="like this restaurant"]').dispatchEvent(new Event('click'));
+
+    const restaurant = await FavoriteRestaurantIdb.getAllRestaurant();
+    expect(restaurant).toEqual([]); // Pastikan database kosong
+  });
+
 });

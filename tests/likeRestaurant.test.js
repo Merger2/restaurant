@@ -66,13 +66,13 @@ describe('Liking A Restaurant', () => {
     await FavoriteRestaurantIdb.deleteRestaurant(1);
   });
 
-  xit('should not add a restaurant when it has no id', async () => {
+  it('should not add a restaurant when it has no id', async () => {
     await LikeButtonInitiator.init({
       likeButtonContainer: document.querySelector('#likeButtonContainer'),
-      movie: {},
+      restaurant: {},
     });
     document.querySelector('#likeButton').dispatchEvent(new Event('click'));
-    expect(await FavoriteMovieIdb.getAllMovies()).toEqual([]);
+    expect(await FavoriteRestaurantIdb.getAllRestaurant()).toEqual([]);
   });
 
 });

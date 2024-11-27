@@ -25,7 +25,7 @@ checkDB();
 const FavoriteRestaurantIdb = {
   async getRestaurant(id) {
     if (!id) {
-      return null;
+      return;
     }
     const db = await dbPromise;
     return db.get(OBJECT_STORE_NAME, id);

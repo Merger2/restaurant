@@ -40,7 +40,10 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  background: url('../public/images/heros/hero-image_3.jpg') no-repeat center center/cover;
+  background-image: url('../public/images/heros/hero-image_3.jpg');
+  background-repeat: no-repeat;
+background-position: center center;
+background-size: cover;
 }
 
 

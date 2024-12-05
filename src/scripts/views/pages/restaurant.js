@@ -1,6 +1,8 @@
 import RestaurantSource from '../../data/restaurant-source';
 import { createItemTemplate } from '../templates/templates-restaurant';
 
+
+
 const RestaurantList = {
   async render() {
     return `

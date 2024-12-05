@@ -1,10 +1,15 @@
 import CONFIG from '../../globals/config';
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+
 
 const createDetailTemplate = (item) => `
    <section class="item-detail">
     <div class="item__header">
       <h2 class="item__title">${item.name || 'No name available'}</h2>
-      <img class="item__poster" src="${CONFIG.IMAGE_URL + (item.pictureId || 'default-image.jpg')}" alt="${item.name || 'No name available'}" />
+     <img class="item__poster lazyload" 
+           data-src="${CONFIG.IMAGE_URL + (item.pictureId || 'default-image.jpg')}" 
+           alt="${item.name || 'No name available'}" />
     </div>
     
     <div class="item__info">
@@ -112,7 +117,7 @@ const createLikeButtonTemplate = () => `
 `;
 
 const createUnlikeButtonTemplate = () => `
-  <button aria-label="unlike this restaurant" id="likeButton" class="like">
+  <button aria-label="unlike this restaurant" id="unlikeButton" class="like">
     <i class="fa fa-heart" aria-hidden="true"></i>
   </button>
 `;

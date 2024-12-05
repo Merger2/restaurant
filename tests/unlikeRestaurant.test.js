@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import * as TestFactories from './helpers/testFactories';
 import FavoriteRestaurantIdb from '../src/scripts/data/favorite-restaurant-db';
+import * as TestFactories from './helpers/testFactories';
 
 describe('Unliking A Restaurant', () => {
   const addLikeButtonContainer = () => {

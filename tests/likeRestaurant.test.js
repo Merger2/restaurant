@@ -46,7 +46,9 @@ describe('Liking A Restaurant', () => {
 
   it('should not add a restaurant when it has no id', async () => {
     await TestFactories.createLikeButtonPresenterWithRestaurant({});
+
     document.querySelector('#likeButton').dispatchEvent(new Event('click'));
+
     expect(await FavoriteRestaurantIdb.getAllRestaurant()).toEqual([]);
   });
 

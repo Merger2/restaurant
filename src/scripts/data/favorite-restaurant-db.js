@@ -1,3 +1,4 @@
+
 /* eslint-disable no-prototype-builtins */
 import { openDB } from 'idb';
 import CONFIG from '../globals/config';
@@ -50,6 +51,7 @@ const FavoriteRestaurantIdb = {
     const db = await dbPromise;
     return db.delete(OBJECT_STORE_NAME, id);
   },
+
 };
 
 export default FavoriteRestaurantIdb;

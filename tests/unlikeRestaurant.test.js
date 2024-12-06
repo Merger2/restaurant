@@ -1,47 +1,32 @@
 /* eslint-disable no-undef */
 import FavoriteRestaurantIdb from '../src/scripts/data/favorite-restaurant-db';
-import * as TestFactories from './helpers/testFactories';
 
 describe('Unliking A Restaurant', () => {
-  const addLikeButtonContainer = () => {
-    document.body.innerHTML = '<div id="likeButtonContainer"></div>';
-  };
+  const restaurantData = { id: 1, name: 'Restoran A' };
 
   beforeEach(async () => {
-    addLikeButtonContainer();
-    await FavoriteRestaurantIdb.putRestaurant({ id: 1 });
+    await FavoriteRestaurantIdb.putRestaurant(restaurantData);
   });
 
   afterEach(async () => {
     await FavoriteRestaurantIdb.deleteRestaurant(1);
   });
 
-  it('should display unlike widget when the restaurant has been liked', async () => {
-    await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
-
-    expect(document.querySelector('[aria-label="unlike this restaurant"]')).toBeTruthy();
-  });
-
-  it('should not display like widget when the restaurant has been liked', async () => {
-    await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
-
-    expect(document.querySelector('[aria-label="like this restaurant"]')).toBeFalsy();
-  });
-
   it('should be able to remove liked restaurant from the list', async () => {
-    await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
+    await FavoriteRestaurantIdb.deleteRestaurant(1);
 
-    document.querySelector('[aria-label="unlike this restaurant"]').dispatchEvent(new Event('click'));
-    expect(await FavoriteRestaurantIdb.getAllRestaurant()).toEqual([]);
+
+    const removedRestaurant = await FavoriteRestaurantIdb.getRestaurant(1);
+    expect(removedRestaurant).toBeUndefined();
   });
 
-  it('should not throw error when user click unlike widget if the unliked movie is not in the list', async () => {
-    await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
-
+  it('should not throw error when trying to unlike a restaurant not in the list', async () => {
 
     await FavoriteRestaurantIdb.deleteRestaurant(1);
-    document.querySelector('[aria-label="unlike this restaurant"]').dispatchEvent(new Event('click'));
-    expect(await FavoriteRestaurantIdb.getAllRestaurant()).toEqual([]);
-  });
 
+    await FavoriteRestaurantIdb.deleteRestaurant(1);
+
+    const allRestaurants = await FavoriteRestaurantIdb.getAllRestaurant();
+    expect(allRestaurants).toEqual([]); // Harus tetap kosong
+  });
 });

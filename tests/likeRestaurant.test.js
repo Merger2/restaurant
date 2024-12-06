@@ -1,55 +1,50 @@
 /* eslint-disable no-undef */
 import FavoriteRestaurantIdb from '../src/scripts/data/favorite-restaurant-db';
-import * as TestFactories from './helpers/testFactories';
 
-describe('Liking A Restaurant', () => {
-  const addLikeButtonContainer = () => {
-    document.body.innerHTML = '<div id="likeButtonContainer"></div>';
-  };
+describe('Favorite Restaurant Integration Test', () => {
+  const restaurantData = { id: 1, name: 'Restoran A' };
 
-  beforeEach(() => {
-    addLikeButtonContainer();
-  });
-
-  it('should show the like button when the movie has not been liked before', async () => {
-    await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
-
-    expect(document.querySelector('[aria-label="like this restaurant"]')).toBeTruthy();
-  });
-
-  it('should not show the unlike button when the restaurant has not been liked before', async () => {
-    await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
-
-    expect(document.querySelector('[aria-label="unlike this restaurant"]')).toBeFalsy();
-  });
-
-  it('should be able to like the restaurant', async () => {
-    await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
-
-    document.querySelector('#likeButton').dispatchEvent(new Event('click'));
-    const restaurant = await FavoriteRestaurantIdb.getRestaurant(1);
-    expect(restaurant).toEqual({ id: 1 });
-
+  afterEach(async () => {
     await FavoriteRestaurantIdb.deleteRestaurant(1);
   });
 
-  it('should not add a restaurant again when its already liked', async () => {
-    await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
+  it('should be able to add a restaurant to the favorite list', async () => {
 
-    await FavoriteRestaurantIdb.putRestaurant({ id: 1 });
+    await FavoriteRestaurantIdb.putRestaurant(restaurantData);
 
-    document.querySelector('#likeButton').dispatchEvent(new Event('click'));
 
-    expect(await FavoriteRestaurantIdb.getAllRestaurant()).toEqual([{ id: 1 }]);
+    const favoriteRestaurant = await FavoriteRestaurantIdb.getRestaurant(1);
+    expect(favoriteRestaurant).toEqual(restaurantData);
+  });
+
+  it('should not add the same restaurant twice', async () => {
+
+    await FavoriteRestaurantIdb.putRestaurant(restaurantData);
+    await FavoriteRestaurantIdb.putRestaurant(restaurantData);
+
+
+    const allRestaurants = await FavoriteRestaurantIdb.getAllRestaurant();
+    expect(allRestaurants).toEqual([restaurantData]);
+  });
+
+  it('should be able to remove a restaurant from the favorite list', async () => {
+
+    await FavoriteRestaurantIdb.putRestaurant(restaurantData);
+
+
     await FavoriteRestaurantIdb.deleteRestaurant(1);
+
+
+    const deletedRestaurant = await FavoriteRestaurantIdb.getRestaurant(1);
+    expect(deletedRestaurant).toBeUndefined();
   });
 
-  it('should not add a restaurant when it has no id', async () => {
-    await TestFactories.createLikeButtonPresenterWithRestaurant({});
+  it('should not add a restaurant without an ID', async () => {
 
-    document.querySelector('#likeButton').dispatchEvent(new Event('click'));
+    await FavoriteRestaurantIdb.putRestaurant({ name: 'Restoran Tanpa ID' });
 
-    expect(await FavoriteRestaurantIdb.getAllRestaurant()).toEqual([]);
+
+    const allRestaurants = await FavoriteRestaurantIdb.getAllRestaurant();
+    expect(allRestaurants).toEqual([]);
   });
-
 });

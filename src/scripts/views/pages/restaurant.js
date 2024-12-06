@@ -8,6 +8,11 @@ const RestaurantList = {
     return `
       <section id="hero">
       <div class="hero main-container">
+            <picture>
+        <source media="(max-width: 600px)" srcset="./images/heros/hero-image_3-small.jpg">
+        <img src='./images/heros/hero-image_3-small.jpg' 
+             alt="dirt rally poster">
+      </picture>
         <h4>Enjoy an unforgettable experience!</h4>
         <h1>Resto Review</h1>
         <div class="hero-cta">

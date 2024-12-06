@@ -7,30 +7,31 @@ const RestaurantList = {
   async render() {
     return `
       <section id="hero">
-      <div class="hero main-container">
-            <picture>
-        <source media="(max-width: 600px)" srcset="./images/heros/hero-image_3-small.jpg">
-        <img src='./images/heros/hero-image_3-small.jpg' 
-             alt="dirt rally poster">
-      </picture>
-        <h4>Enjoy an unforgettable experience!</h4>
-        <h1>Resto Review</h1>
-        <div class="hero-cta">
-          <a href="#restaurants">
-            <button class="cta-button">See Restaurant</button>
-          </a>
-          <a href="#/favorite">
-            <button class="cta-button">Favorite</button>
-          </a>
-        </div>
-      </div>
-      <div class="header-shadow"></div>
-    </section>
-    <div class="content">
-      <h2 class="content__heading">Available Restaurants</h2>
-      <div id="restaurants" class="restaurants">
+  <div class="hero main-container">
+    <picture>
+      <source media="(max-width: 600px)" srcset="./images/heros/hero-image_3-small.jpg">
+      <img src='./images/heros/hero-image_3-large.jpg' alt="Hero Image">
+    </picture>
+    <div class="hero-content">
+      <h4>Enjoy an unforgettable experience!</h4>
+      <h1>Resto Review</h1>
+      <div class="hero-cta">
+        <a href="#restaurants">
+          <button class="cta-button">See Restaurant</button>
+        </a>
+        <a href="#/favorite">
+          <button class="cta-button">Favorite</button>
+        </a>
       </div>
     </div>
+  </div>
+  <div class="header-shadow"></div>
+</section>
+
+<div class="content">
+  <h2 class="content__heading">Available Restaurants</h2>
+  <div id="restaurants" class="restaurants"></div>
+</div>
     `;
   },
 
